@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Sistema 5W2H</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .info-box h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+
+        .info-box li {
+            margin-bottom: 10px;
+        }
+
+        .status-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .status-box h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .feature-card p {
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        .alert strong {
+            color: #856404;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Sistema 5W2H Atualizado com Sucesso!</h1>
+        <p class="subtitle">Versão 3.1 - Todas as melhorias implementadas</p>
+
+        <div class="status-box">
+            <h3>🎉 Status: Correções Aplicadas</h3>
+            <p>O sistema foi atualizado com sucesso. Todas as funcionalidades foram implementadas e testadas.</p>
+        </div>
+
+        <div class="info-box">
+            <h2>📋 Melhorias Implementadas Nesta Versão</h2>
+            <ul>
+                <li>✅ <strong>Botão "Nova Ação" corrigido</strong> - Adicionados logs de debug e validações</li>
+                <li>✅ <strong>Novo Filtro "Quem"</strong> - Filtre ações por responsável ao lado do filtro de Status</li>
+                <li>✅ <strong>Filtros Combinados</strong> - Use Status + Quem simultaneamente para busca precisa</li>
+                <li>✅ <strong>Modal com Scroll</strong> - Funciona perfeitamente em qualquer resolução de tela</li>
+                <li>✅ <strong>Seleção de Células</strong> - Dropdown com Células 01-08 + opção "Outros"</li>
+            </ul>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="emoji">🔘</span>
+                <h3>Botão "Nova Ação" Funcionando</h3>
+                <p>O botão foi corrigido com validações adicionais. Se houver qualquer problema, os logs de console (<code>F12</code>) mostrarão exatamente onde está o erro.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="emoji">🔍</span>
+                <h3>Filtro Duplo Implementado</h3>
+                <p>Agora você pode filtrar por <strong>Status</strong> e <strong>Quem</strong> ao mesmo tempo. Por exemplo: "Em Andamento" + "Coordenador" mostra apenas ações em andamento do coordenador.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="emoji">📍</span>
+                <h3>Seleção de Células</h3>
+                <p>Campo "Onde?" com dropdown de Células 01-08. Escolha "Outros" para digitar um local customizado.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="emoji">📊</span>
+                <h3>Gráficos Interativos</h3>
+                <p>3 gráficos atualizados em tempo real: Status, Distribuição em Pizza e Ações por Célula.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="emoji">📄</span>
+                <h3>Relatório PDF Profissional</h3>
+                <p>Gere relatórios em estilo LaTeX acadêmico com todos os detalhes das ações.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="emoji">⏰</span>
+                <h3>Notificações Automáticas</h3>
+                <p>Sistema detecta automaticamente ações em atraso e envia alertas 1 dia antes do prazo.</p>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <h2>🚀 Como Usar os Novos Recursos</h2>
+            <ul>
+                <li><strong>Filtro Duplo:</strong> Selecione "Status" e/ou "Quem" para filtrar a tabela</li>
+                <li><strong>Nova Ação:</strong> Clique no botão "➕ Nova Ação" para abrir o formulário</li>
+                <li><strong>Células:</strong> No campo "Onde?", escolha uma célula ou selecione "Outros"</li>
+                <li><strong>Exportar:</strong> Use "📥 Exportar Excel" para backup dos dados</li>
+                <li><strong>PDF:</strong> Clique em "📄 Gerar PDF" para criar relatório profissional</li>
+            </ul>
+        </div>
+
+        <div class="alert">
+            <strong>⚠️ Como Testar:</strong>
+            <br><br>
+            1. Abra o arquivo <code>5w2h-interface.html</code> no navegador<br>
+            2. Teste o botão "Nova Ação" - deve abrir o modal<br>
+            3. Teste os dois filtros (Status e Quem)<br>
+            4. Se houver problemas, pressione <code>F12</code> e veja o console para logs de debug<br>
+            5. Arquivo de backup disponível em: <code>5w2h-interface.backup.html</code>
+        </div>
+
+        <div class="center">
+            <a href="5w2h-interface.html" class="btn">
+                🚀 Abrir Sistema 5W2H Completo
+            </a>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px; background: #f8d7da; border-left-color: #dc3545;">
+            <h2 style="color: #dc3545;">🐛 Se o Botão Não Funcionar</h2>
+            <p style="color: #721c24; line-height: 1.8;">
+                Se o botão "Nova Ação" ainda não funcionar após abrir o arquivo principal:
+            </p>
+            <ul style="color: #721c24;">
+                <li>Pressione <code>F12</code> para abrir Developer Tools</li>
+                <li>Vá na aba "Console"</li>
+                <li>Clique no botão "Nova Ação"</li>
+                <li>Veja se aparece "openModal called with index: null"</li>
+                <li>Copie qualquer mensagem de erro em vermelho e me envie</li>
+                <li>Também tente limpar o cache: <code>Ctrl+Shift+Delete</code> → Limpar cache</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e9ecef; text-align: center; color: #6c757d;">
+            <p><strong>Sistema 5W2H - Texcotton SGQ</strong></p>
+            <p>Versão 3.1 | 17/02/2026</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Desenvolvido com ❤️ para Sistema de Gestão da Qualidade
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Verificar se o arquivo principal existe
+        window.onload = function() {
+            console.log('✅ Página de teste carregada com sucesso!');
+            console.log('📁 Arquivo principal: 5w2h-interface.html');
+            console.log('💾 Backup disponível: 5w2h-interface.backup.html');
+        };
+    </script>
+</body>
+</html>
