@@ -1,0 +1,31 @@
+# Arquivos temporários
+*.tmp
+*.bak
+*~
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Arquivos de backup
+*.backup.html
+5w2h-SIMPLES.html
+VISUALIZAR-SISTEMA.html
+LEIA-ME.html
+
+# Node modules (caso adicione no futuro)
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache
+.cache/
