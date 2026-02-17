@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Sistema 5W2H</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema 5W2H - Teste Simples</h1>
+
+        <div>
+            <button class="btn-primary" onclick="abrirModal()">➕ Nova Ação</button>
+
+            <label>Filtrar por Status:</label>
+            <select id="filtroStatus" onchange="filtrar()">
+                <option value="">Todos</option>
+                <option value="Não Iniciado">Não Iniciado</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Em Atraso">Em Atraso</option>
+                <option value="Finalizado">Finalizado</option>
+            </select>
+
+            <label>Filtrar por Quem:</label>
+            <select id="filtroQuem" onchange="filtrar()">
+                <option value="">Todos</option>
+                <option value="Supervisora">Supervisora</option>
+                <option value="Coordenador">Coordenador</option>
+                <option value="Gerente">Gerente</option>
+                <option value="CQ1">CQ1</option>
+                <option value="CQ2">CQ2</option>
+                <option value="Instrutora">Instrutora</option>
+                <option value="Revisora">Revisora</option>
+            </select>
+        </div>
+
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th>Ação</th>
+                    <th>O Quê?</th>
+                    <th>Onde?</th>
+                    <th>Quem?</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Nova Ação 5W2H</h2>
+            <form id="formulario">
+                <label>Ação *</label>
+                <input type="text" id="acao" required>
+
+                <label>O Quê? *</label>
+                <textarea id="what" required></textarea>
+
+                <label>Por Quê? *</label>
+                <textarea id="why" required></textarea>
+
+                <label>Onde? *</label>
+                <select id="onde" required onchange="mostrarOutros()">
+                    <option value="">Selecione...</option>
+                    <option value="Célula 01">Célula 01</option>
+                    <option value="Célula 02">Célula 02</option>
+                    <option value="Célula 03">Célula 03</option>
+                    <option value="Célula 04">Célula 04</option>
+                    <option value="Célula 05">Célula 05</option>
+                    <option value="Célula 06">Célula 06</option>
+                    <option value="Célula 07">Célula 07</option>
+                    <option value="Célula 08">Célula 08</option>
+                    <option value="Outros">Outros</option>
+                </select>
+
+                <div id="outrosDiv" style="display:none;">
+                    <label>Especifique o Local: *</label>
+                    <input type="text" id="outros">
+                </div>
+
+                <label>Data Início *</label>
+                <input type="date" id="dataInicio" required>
+
+                <label>Data Fim *</label>
+                <input type="date" id="dataFim" required>
+
+                <label>Quem? *</label>
+                <select id="quem" required>
+                    <option value="">Selecione...</option>
+                    <option value="Supervisora">Supervisora</option>
+                    <option value="Coordenador">Coordenador</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="CQ1">CQ1</option>
+                    <option value="CQ2">CQ2</option>
+                    <option value="Instrutora">Instrutora</option>
+                    <option value="Revisora">Revisora</option>
+                </select>
+
+                <label>Como? *</label>
+                <textarea id="how" required></textarea>
+
+                <label>Quanto?</label>
+                <input type="text" id="quanto">
+
+                <label>Status *</label>
+                <select id="status" required>
+                    <option value="Não Iniciado">Não Iniciado</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Em Atraso">Em Atraso</option>
+                    <option value="Finalizado">Finalizado</option>
+                </select>
+
+                <br><br>
+                <button type="button" onclick="fecharModal()">Cancelar</button>
+                <button type="button" class="btn-primary" onclick="salvar()">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let acoes = [];
+
+        // Carregar dados ao iniciar
+        window.onload = function() {
+            console.log('✅ Sistema carregado!');
+            carregarDados();
+            renderizar();
+        };
+
+        function carregarDados() {
+            const salvos = localStorage.getItem('5w2h_acoes_teste');
+            if (salvos) {
+                acoes = JSON.parse(salvos);
+                console.log('Dados carregados:', acoes.length, 'ações');
+            }
+        }
+
+        function salvarDados() {
+            localStorage.setItem('5w2h_acoes_teste', JSON.stringify(acoes));
+            console.log('Dados salvos!');
+        }
+
+        function abrirModal() {
+            console.log('Abrindo modal...');
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('formulario').reset();
+        }
+
+        function fecharModal() {
+            console.log('Fechando modal...');
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function mostrarOutros() {
+            const onde = document.getElementById('onde').value;
+            const outrosDiv = document.getElementById('outrosDiv');
+            const outrosInput = document.getElementById('outros');
+
+            if (onde === 'Outros') {
+                outrosDiv.style.display = 'block';
+                outrosInput.required = true;
+            } else {
+                outrosDiv.style.display = 'none';
+                outrosInput.required = false;
+            }
+        }
+
+        function salvar() {
+            console.log('Salvando ação...');
+
+            const onde = document.getElementById('onde').value;
+            const localFinal = onde === 'Outros'
+                ? document.getElementById('outros').value
+                : onde;
+
+            const acao = {
+                acao: document.getElementById('acao').value,
+                what: document.getElementById('what').value,
+                why: document.getElementById('why').value,
+                where: localFinal,
+                whenStart: document.getElementById('dataInicio').value,
+                whenEnd: document.getElementById('dataFim').value,
+                who: document.getElementById('quem').value,
+                how: document.getElementById('how').value,
+                howMuch: document.getElementById('quanto').value,
+                status: document.getElementById('status').value
+            };
+
+            acoes.push(acao);
+            salvarDados();
+            renderizar();
+            fecharModal();
+
+            console.log('Ação salva com sucesso!');
+        }
+
+        function excluir(index) {
+            if (confirm('Deseja realmente excluir esta ação?')) {
+                acoes.splice(index, 1);
+                salvarDados();
+                renderizar();
+                console.log('Ação excluída!');
+            }
+        }
+
+        function filtrar() {
+            renderizar();
+        }
+
+        function renderizar() {
+            console.log('Renderizando tabela...');
+            const tbody = document.getElementById('corpoTabela');
+            const filtroStatus = document.getElementById('filtroStatus').value;
+            const filtroQuem = document.getElementById('filtroQuem').value;
+
+            tbody.innerHTML = '';
+
+            let acoesFiltradas = acoes;
+
+            if (filtroStatus) {
+                acoesFiltradas = acoesFiltradas.filter(a => a.status === filtroStatus);
+            }
+
+            if (filtroQuem) {
+                acoesFiltradas = acoesFiltradas.filter(a => a.who === filtroQuem);
+            }
+
+            console.log('Ações filtradas:', acoesFiltradas.length);
+
+            acoesFiltradas.forEach((acao, index) => {
+                const indexReal = acoes.indexOf(acao);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${acao.acao}</strong></td>
+                    <td>${acao.what}</td>
+                    <td>${acao.where}</td>
+                    <td>${acao.who}</td>
+                    <td>${acao.status}</td>
+                    <td>
+                        <button onclick="excluir(${indexReal})">🗑️</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                fecharModal();
+            }
+        };
+    </script>
+</body>
+</html>
